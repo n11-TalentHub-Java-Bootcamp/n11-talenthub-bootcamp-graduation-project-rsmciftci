@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.example.n11talenthubbootcampgraduationprojectrsmciftci.N11TalenthubBootcampGraduationProjectRsmciftciApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.722 s - in com.example.n11talenthubbootcampgraduationprojectrsmciftci.N11TalenthubBootcampGraduationProjectRsmciftciApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.532 s - in com.example.n11talenthubbootcampgraduationprojectrsmciftci.N11TalenthubBootcampGraduationProjectRsmciftciApplicationTests

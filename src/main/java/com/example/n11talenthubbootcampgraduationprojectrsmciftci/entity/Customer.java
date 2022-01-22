@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -20,7 +22,8 @@ public class Customer {
     private Long id;
 
     @Column(unique = true,nullable = false,length = 11)
-    private String turkishIdentityNumber; // TODO:validation
+    @Size(min=11,max=11)
+    private String turkishIdentityNumber;
 
     @Column(nullable = false)
     private String name;
@@ -31,14 +34,16 @@ public class Customer {
     private String surname;
 
     @Column(nullable = false,length = 11)
+    @Size(min=11,max=11) // TODO: ev telefonları 11, cep telefonları 11 haneli
     private String phoneNumber;
 
-    private String email;
+    private String email;  //TODO: email not unique, family members emails can be saved
 
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
     @Column(nullable = false, scale = 2) // TODO:scale 2
+    @Digits(fraction = 2,integer = 20)
     private BigDecimal monthlySalary; // TODO: valitadion?
 
 
