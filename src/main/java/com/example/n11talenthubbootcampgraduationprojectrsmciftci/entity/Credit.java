@@ -19,8 +19,7 @@ public class Credit {
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
-    private Boolean isPledgeGiven;
+
     @Column(scale = 2)// TODO:scale 2
     private BigDecimal pledgeValue; // TODO: valitadion?
     @Column(scale = 2)

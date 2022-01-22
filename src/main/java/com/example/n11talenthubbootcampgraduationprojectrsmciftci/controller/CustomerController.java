@@ -5,7 +5,6 @@ import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerSa
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CreditScoreService;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CustomerService;
 import lombok.AllArgsConstructor;
-import org.apache.tomcat.jni.Local;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
