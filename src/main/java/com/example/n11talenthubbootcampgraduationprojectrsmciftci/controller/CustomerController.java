@@ -2,6 +2,7 @@ package com.example.n11talenthubbootcampgraduationprojectrsmciftci.controller;
 
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerSavingDto;
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CreditScoreService;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.apache.tomcat.jni.Local;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 public class CustomerController {
 
     private CustomerService customerService;
+    private CreditScoreService creditScoreService;
 
     @PostMapping("")
     public  CustomerDto save(@RequestBody @Valid CustomerSavingDto customerSavingDto){
@@ -32,6 +34,12 @@ public class CustomerController {
     public ResponseEntity deleteCustomer(@PathVariable String turkishIdentityNumber, @PathVariable String dateOfBirth){
         return customerService.delete(turkishIdentityNumber,LocalDate.parse(dateOfBirth));
     }
+
+    @GetMapping("{tr}")
+    public String findCreditScore(@PathVariable String tr){
+        return creditScoreService.getCreditScoreResult(tr).toString();
+    }
+
 
 
 
