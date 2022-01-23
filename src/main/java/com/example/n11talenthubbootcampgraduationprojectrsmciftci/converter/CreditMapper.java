@@ -1,5 +1,6 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.converter;
 
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CreditApplicationResultDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Credit;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Customer;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.factory.CreditProducedInFactory;
@@ -14,4 +15,7 @@ public interface CreditMapper {
 
 
     Credit convertCreditProducedFactoryToCredit(CreditProducedInFactory creditProducedInFactory);
+
+    CreditApplicationResultDto convertCreditToCreditApplicationResultDto(Credit credit);
+
 }

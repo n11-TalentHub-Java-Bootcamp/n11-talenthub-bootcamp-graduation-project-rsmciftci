@@ -43,7 +43,7 @@ public class Customer {
     private LocalDate dateOfBirth;
 
     @Column(nullable = false, scale = 2) // TODO:scale 2
-    @Digits(fraction = 2,integer = 20)
+    @Digits(fraction = 2,integer = 10)
     private BigDecimal monthlySalary; // TODO: valitadion?
 
 

@@ -1,9 +1,11 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.service;
 
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.converter.CreditMapper;
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.converter.CustomerMapper;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dao.CreditDao;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dao.CustomerDao;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CreditApplicationDto;
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CreditApplicationResultDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Credit;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Customer;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.enums.CreditResultEnum;
@@ -24,13 +26,12 @@ import java.util.Optional;
 @AllArgsConstructor
 @Transactional
 public class CreditService {
-
+// TODO: bu koda göre kredi başvurusu varsa tekrar kredi başvurusu yapamayacak, peki daha önceki başvuru onay almadıysa yinede yapamamalı mı?
     private CreditDao creditDao;
     private CustomerDao customerDao;
     private CreditScoreService creditScoreService;
-//TODO:DTO'da validasyonu yap
-    //TODO:kredi sonucu ve limiti dönmesi grekiyor
-    public void saveCreditApplicationIfCustomerExistsIfNotSaveCustomerThenCreditApplicationAndSendSMS(@RequestBody @Valid CreditApplicationDto creditApplicationDto) {
+
+    public CreditApplicationResultDto saveCreditApplicationIfCustomerExistsIfNotSaveCustomerThenCreditApplicationAndSendSMS(CreditApplicationDto creditApplicationDto) {
 
         String turkishIdentityNumber = creditApplicationDto.getTurkishIdentityNumber();
         LocalDate dateOfBirth = creditApplicationDto.getDateOfBirth();
@@ -50,10 +51,10 @@ public class CreditService {
 
                 CreditProducedInFactory creditProducedInFactory = CreditFactory.getCredit(creditScore,creditResultEnum,customer,pledgeValue);
                 Credit credit = CreditMapper.INSTANCE.convertCreditProducedFactoryToCredit(creditProducedInFactory);
-
                 creditDao.save(credit);
+                CreditApplicationResultDto creditApplicationResultDto = CreditMapper.INSTANCE.convertCreditToCreditApplicationResultDto(credit);
+                return creditApplicationResultDto;
                 //TODO:SMS gönder
-                //TODO:kredi sonucu ve limiti dönmesi grekiyor
 
 
             }else{
@@ -62,9 +63,18 @@ public class CreditService {
 
 
         }else{
-            //TODO: save customer first then credit
+
+            Customer customer = CustomerMapper.INSTANCE.convertCreditApplicationDtoToCustomer(creditApplicationDto);
+            customerDao.save(customer);
+
+            CreditProducedInFactory creditProducedInFactory = CreditFactory.getCredit(creditScore,creditResultEnum,customer,pledgeValue);
+            Credit credit = CreditMapper.INSTANCE.convertCreditProducedFactoryToCredit(creditProducedInFactory);
+            creditDao.save(credit);
+            CreditApplicationResultDto creditApplicationResultDto = CreditMapper.INSTANCE.convertCreditToCreditApplicationResultDto(credit);
+            return creditApplicationResultDto;
+
             //TODO:SMS gönder
-            //TODO:kredi sonucu ve limiti dönmesi grekiyor
+
         }
 
 

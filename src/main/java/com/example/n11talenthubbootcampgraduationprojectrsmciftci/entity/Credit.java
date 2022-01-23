@@ -27,8 +27,8 @@ public class Credit {
     @Enumerated(EnumType.STRING)
     private CreditResultEnum creditResultEnum;
     private int creditScore;
-    @OneToOne
-    @JoinColumn(name="turkish_identity_number",referencedColumnName = "turkishIdentityNumber")
+    @OneToOne()
+    @JoinColumn(name="turkish_identity_number",referencedColumnName = "turkishIdentityNumber",unique = true)
     private Customer customer;
 
 

@@ -1,5 +1,6 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.converter;
 
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CreditApplicationDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerSavingDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Customer;
@@ -7,7 +8,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-01-24T00:01:14+0300",
+    date = "2022-01-24T02:34:58+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Ubuntu)"
 )
 public class CustomerMapperImpl implements CustomerMapper {
@@ -70,6 +71,26 @@ public class CustomerMapperImpl implements CustomerMapper {
         customer.setEmail( customerDto.getEmail() );
         customer.setDateOfBirth( customerDto.getDateOfBirth() );
         customer.setMonthlySalary( customerDto.getMonthlySalary() );
+
+        return customer;
+    }
+
+    @Override
+    public Customer convertCreditApplicationDtoToCustomer(CreditApplicationDto creditApplicationDto) {
+        if ( creditApplicationDto == null ) {
+            return null;
+        }
+
+        Customer customer = new Customer();
+
+        customer.setTurkishIdentityNumber( creditApplicationDto.getTurkishIdentityNumber() );
+        customer.setName( creditApplicationDto.getName() );
+        customer.setMiddleName( creditApplicationDto.getMiddleName() );
+        customer.setSurname( creditApplicationDto.getSurname() );
+        customer.setPhoneNumber( creditApplicationDto.getPhoneNumber() );
+        customer.setEmail( creditApplicationDto.getEmail() );
+        customer.setDateOfBirth( creditApplicationDto.getDateOfBirth() );
+        customer.setMonthlySalary( creditApplicationDto.getMonthlySalary() );
 
         return customer;
     }

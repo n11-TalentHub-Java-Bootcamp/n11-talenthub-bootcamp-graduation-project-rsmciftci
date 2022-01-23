@@ -7,7 +7,8 @@ import java.math.BigDecimal;
 
 public interface CreditProducedInFactory {
  // TODO:properties file değerleri göm oradan çek
-    // TODO : toStringlerde sadece kredi limiti olsa yeter
+    // TODO : toStringlerde sadece kredi limiti olsa yeter, veya toStringlere gerek var mı?
+    // TODO: üretilen kredi limiti değerleri her aralık için doğru mu?
 
     int getCreditScore();
     CreditResultEnum getCreditResultEnum();

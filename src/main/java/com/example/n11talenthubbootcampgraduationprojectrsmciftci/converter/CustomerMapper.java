@@ -1,5 +1,6 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.converter;
 
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CreditApplicationDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerSavingDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Customer;
@@ -18,4 +19,6 @@ public interface CustomerMapper {
     CustomerDto convertCustomerToCustomerDto(Customer customer);
 
     Customer convertCustomerDtoToCustomer(CustomerDto customerDto);
+
+    Customer convertCreditApplicationDtoToCustomer(CreditApplicationDto creditApplicationDto);
 }

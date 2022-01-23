@@ -1,6 +1,7 @@
 /home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/factory/CreditProducedInFactoryScoreLowerThan500.java
 /home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/converter/CreditMapper.java
 /home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/service/CreditScoreService.java
+/home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/exception/SalaryNotMatchException.java
 /home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/exception/TurkishIdentityNumberNot11CharactersException.java
 /home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/factory/CS500To1000AndSalary5kTo10k.java
 /home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/factory/CreditFactory.java
@@ -24,5 +25,6 @@
 /home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/enums/CreditResultEnum.java
 /home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/dto/CustomerSavingDto.java
 /home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/N11TalenthubBootcampGraduationProjectRsmciftciApplication.java
+/home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/dto/CreditApplicationResultDto.java
 /home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/exception/ProductNotFoundException.java
 /home/rasko/Desktop/GraduationProject/n11-talenthub-bootcamp-graduation-project-rsmciftci/src/main/java/com/example/n11talenthubbootcampgraduationprojectrsmciftci/dto/CreditApplicationDto.java
