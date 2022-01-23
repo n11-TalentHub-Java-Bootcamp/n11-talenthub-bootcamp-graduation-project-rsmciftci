@@ -54,6 +54,18 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
         return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler
+    public final ResponseEntity<Object> handleAllExceptions(SalaryNotMatchException ex, WebRequest webRequest){
+
+        Date errorDate = new Date();
+        String message = ex.getMessage();
+        String description = webRequest.getDescription(false);
+
+        com.example.n11talenthubbootcampgraduationprojectrsmciftci.exception.ExceptionResponse exceptionResponse =
+                new com.example.n11talenthubbootcampgraduationprojectrsmciftci.exception.ExceptionResponse(errorDate, message, description);
+
+        return new ResponseEntity(exceptionResponse, HttpStatus.CONFLICT);
+    }
 
 
 }

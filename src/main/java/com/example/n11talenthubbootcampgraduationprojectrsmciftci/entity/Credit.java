@@ -24,9 +24,11 @@ public class Credit {
     private BigDecimal pledgeValue; // TODO: valitadion?
     @Column(scale = 2)
     private BigDecimal creditLimit;
-    private CreditResultEnum creditResult;
+    @Enumerated(EnumType.STRING)
+    private CreditResultEnum creditResultEnum;
+    private int creditScore;
     @OneToOne
-    @JoinColumn(name="turkish_identity_number") // TODO: check if it works
+    @JoinColumn(name="turkish_identity_number",referencedColumnName = "turkishIdentityNumber")
     private Customer customer;
 
 

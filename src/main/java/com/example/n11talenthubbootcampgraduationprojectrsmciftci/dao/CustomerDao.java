@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface CustomerDao extends JpaRepository<Customer,Long> {
 
     Optional<Customer> findCustomerByTurkishIdentityNumberAndDateOfBirth(String turkishIdentityNumber, LocalDate dateOfBirth);
+    Optional<Customer> findCustomerByTurkishIdentityNumber(String turkishIdentityNumber);
 }

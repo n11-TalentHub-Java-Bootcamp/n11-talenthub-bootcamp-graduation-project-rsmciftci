@@ -1,26 +1,32 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.factory;
 
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Customer;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.enums.CreditResultEnum;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class CS500To1000AndSalaryLowerThan5k implements Credit{
+public class CS500To1000AndSalaryLowerThan5k implements CreditProducedInFactory {
 
     int creditScore;
-    BigDecimal monthlySalary;
+    CreditResultEnum creditResultEnum;
+    Customer customer;
     BigDecimal creditLimit;
     BigDecimal pledgeValue;
 
-    public CS500To1000AndSalaryLowerThan5k(  int creditScore, BigDecimal monthlySalary, BigDecimal creditLimit, BigDecimal pledgeValue) {
+    public CS500To1000AndSalaryLowerThan5k(  int creditScore,CreditResultEnum creditResultEnum, Customer customer , BigDecimal pledgeValue) {
 
         this.creditScore = creditScore;
-        this.monthlySalary = monthlySalary;
+        this.creditResultEnum = creditResultEnum;
+        this.customer = customer;
         this.creditLimit = BigDecimal.valueOf(10000).add(pledgeValue.multiply(BigDecimal.valueOf(0.1))).setScale(2, RoundingMode.HALF_EVEN);;
         this.pledgeValue = pledgeValue;
     }
 
-
+    @Override
+    public CreditResultEnum getCreditResultEnum() {
+        return creditResultEnum;
+    }
 
     @Override
     public int getCreditScore() {
@@ -28,8 +34,8 @@ public class CS500To1000AndSalaryLowerThan5k implements Credit{
     }
 
     @Override
-    public BigDecimal getMonthlySalary() {
-        return monthlySalary;
+    public Customer getCustomer() {
+        return customer;
     }
 
     @Override
@@ -45,8 +51,9 @@ public class CS500To1000AndSalaryLowerThan5k implements Credit{
     @Override
     public String toString() {
         return "CS500To1000AndSalaryLowerThan5k{" +
-                ", creditScore=" + creditScore +
-                ", monthlySalary=" + monthlySalary +
+                "creditScore=" + creditScore +
+                ", creditResultEnum=" + creditResultEnum +
+                ", customer=" + customer +
                 ", creditLimit=" + creditLimit +
                 ", pledgeValue=" + pledgeValue +
                 '}';

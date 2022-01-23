@@ -34,9 +34,9 @@ public class CustomerController {
         return customerService.delete(turkishIdentityNumber,LocalDate.parse(dateOfBirth));
     }
 
-    @GetMapping("{tr}")
-    public String findCreditScore(@PathVariable String tr){
-        return creditScoreService.getCreditScoreResult(tr).toString();
+    @GetMapping("{tr}") // TODO: creditScoru'n burada olması doğru mu?
+    public String findCreditScoreEnum(@PathVariable String tr){
+        return creditScoreService.getCreditScoreEnum(tr).toString();
     }
 
 

@@ -1,11 +1,12 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.factory;
 
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Customer;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.enums.CreditResultEnum;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class CS500To1000AndSalaryHigherThan9999 implements Credit{
+public class CS500To1000AndSalaryHigherThan9999 implements CreditProducedInFactory {
     /*
      * For this class,
      *  creditScore = [500,1000)
@@ -14,21 +15,26 @@ public class CS500To1000AndSalaryHigherThan9999 implements Credit{
 
 
     int creditScore;
-    BigDecimal monthlySalary;
+    CreditResultEnum creditResultEnum;
+    Customer customer;
     BigDecimal creditLimit;
     BigDecimal pledgeValue;
 
 
-    public CS500To1000AndSalaryHigherThan9999(  int creditScore, BigDecimal monthlySalary, BigDecimal creditLimit, BigDecimal pledgeValue) {
+    public CS500To1000AndSalaryHigherThan9999(  int creditScore,CreditResultEnum creditResultEnum, Customer customer , BigDecimal pledgeValue) {
 
         this.creditScore = creditScore;
-        this.monthlySalary = monthlySalary;
-        this.creditLimit = monthlySalary.multiply(BigDecimal.valueOf(2)).add(pledgeValue.multiply(BigDecimal.valueOf(0.25))) // TODO: kredi limit çarpanı 4/2den geliyor
+        this.creditResultEnum = creditResultEnum;
+        this.customer = customer;
+        this.creditLimit = customer.getMonthlySalary().multiply(BigDecimal.valueOf(2)).add(pledgeValue.multiply(BigDecimal.valueOf(0.25))) // TODO: kredi limit çarpanı 4/2den geliyor
                 .setScale(2,RoundingMode.HALF_EVEN);
         this.pledgeValue = pledgeValue;
     }
 
-
+    @Override
+    public CreditResultEnum getCreditResultEnum() {
+        return creditResultEnum;
+    }
 
     @Override
     public int getCreditScore() {
@@ -36,8 +42,8 @@ public class CS500To1000AndSalaryHigherThan9999 implements Credit{
     }
 
     @Override
-    public BigDecimal getMonthlySalary() {
-        return monthlySalary;
+    public Customer getCustomer() {
+        return customer;
     }
 
     @Override
@@ -52,9 +58,10 @@ public class CS500To1000AndSalaryHigherThan9999 implements Credit{
 
     @Override
     public String toString() {
-        return "CS500To100AndSalaryHigherThan9999{" +
-                ", creditScore=" + creditScore +
-                ", monthlySalary=" + monthlySalary +
+        return "CS500To1000AndSalaryHigherThan9999{" +
+                "creditScore=" + creditScore +
+                ", creditResultEnum=" + creditResultEnum +
+                ", customer=" + customer +
                 ", creditLimit=" + creditLimit +
                 ", pledgeValue=" + pledgeValue +
                 '}';

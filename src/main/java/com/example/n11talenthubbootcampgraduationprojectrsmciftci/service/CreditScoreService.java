@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Service
 public class CreditScoreService {
 
-    public CreditResultEnum getCreditScoreResult(String turkishIdentityNumber){
+    public CreditResultEnum getCreditScoreEnum(String turkishIdentityNumber){
 
         if(turkishIdentityNumber.length() != 11){
             throw new TurkishIdentityNumberNot11CharactersException("Turkish Identity Number Must Be Eleven Characters!");
@@ -28,6 +28,18 @@ public class CreditScoreService {
 
             return CreditResultEnum.APPROVED;
         }
+    }
+
+    public int getCreditScore(String turkishIdentityNumber){
+
+        if(turkishIdentityNumber.length() != 11){
+            throw new TurkishIdentityNumberNot11CharactersException("Turkish Identity Number Must Be Eleven Characters!");
+        }
+
+        Integer lastThreeDigitsOfTurkishIdentityNumber = Integer.valueOf(turkishIdentityNumber.substring(8,11));
+        int creditScore = lastThreeDigitsOfTurkishIdentityNumber + 100;
+
+        return creditScore;
     }
 
 }

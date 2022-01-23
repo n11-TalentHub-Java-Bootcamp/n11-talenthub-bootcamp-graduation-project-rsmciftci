@@ -1,27 +1,33 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.factory;
 
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Customer;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.enums.CreditResultEnum;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class CsHigherThan999 implements Credit{
+public class CsHigherThan999 implements CreditProducedInFactory {
 
     int creditScore;
-    BigDecimal monthlySalary;
+    CreditResultEnum creditResultEnum;
+    Customer customer;
     BigDecimal creditLimit;
     BigDecimal pledgeValue;
 
-    public CsHigherThan999(  int creditScore, BigDecimal monthlySalary, BigDecimal creditLimit, BigDecimal pledgeValue) {
+    public CsHigherThan999(int creditScore, CreditResultEnum creditResultEnum, Customer customer , BigDecimal pledgeValue) {
 
         this.creditScore = creditScore;
-        this.monthlySalary = monthlySalary;
-        this.creditLimit = monthlySalary.multiply(BigDecimal.valueOf(4)).add(pledgeValue.multiply(BigDecimal.valueOf(0.5))) // TODO: kredi limit çarpanı 4/2den geliyor
+        this.creditResultEnum = creditResultEnum;
+        this.customer = customer;
+        this.creditLimit = customer.getMonthlySalary().multiply(BigDecimal.valueOf(4)).add(pledgeValue.multiply(BigDecimal.valueOf(0.5))) // TODO: kredi limit çarpanı 4/2den geliyor
                 .setScale(2, RoundingMode.HALF_EVEN);;
         this.pledgeValue = pledgeValue;
     }
 
-
+    @Override
+    public CreditResultEnum getCreditResultEnum() {
+        return creditResultEnum;
+    }
 
     @Override
     public int getCreditScore() {
@@ -29,8 +35,8 @@ public class CsHigherThan999 implements Credit{
     }
 
     @Override
-    public BigDecimal getMonthlySalary() {
-        return monthlySalary;
+    public Customer getCustomer() {
+        return customer;
     }
 
     @Override
@@ -46,8 +52,9 @@ public class CsHigherThan999 implements Credit{
     @Override
     public String toString() {
         return "CsHigherThan999{" +
-                ", creditScore=" + creditScore +
-                ", monthlySalary=" + monthlySalary +
+                "creditScore=" + creditScore +
+                ", creditResultEnum=" + creditResultEnum +
+                ", customer=" + customer +
                 ", creditLimit=" + creditLimit +
                 ", pledgeValue=" + pledgeValue +
                 '}';
