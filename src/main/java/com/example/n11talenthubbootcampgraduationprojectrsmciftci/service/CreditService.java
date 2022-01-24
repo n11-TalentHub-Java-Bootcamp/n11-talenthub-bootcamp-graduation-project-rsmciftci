@@ -9,6 +9,7 @@ import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CreditAppl
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Credit;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Customer;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.enums.CreditResultEnum;
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.exception.PhoneNumbersNotMatchException;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.exception.SalaryNotMatchException;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.factory.CreditProducedInFactory;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.factory.CreditFactory;
@@ -17,9 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Optional;
@@ -28,40 +27,42 @@ import java.util.Optional;
 @AllArgsConstructor
 @Transactional
 public class CreditService {
-// TODO: bu koda göre kredi başvurusu varsa tekrar kredi başvurusu yapamayacak, peki daha önceki başvuru onay almadıysa yinede yapamamalı mı?
+
     private CreditDao creditDao;
     private CustomerDao customerDao;
     private CreditScoreService creditScoreService;
 
-    public CreditApplicationResultDto saveCreditApplicationIfCustomerExistsIfNotSaveCustomerThenCreditApplicationAndSendSMS(CreditApplicationDto creditApplicationDto) {
+    public CreditApplicationResultDto saveCreditApplicationAndSendSMSIfCustomerExistsIfNotSaveCustomerThenCreditApplicationAndSendSMS(CreditApplicationDto creditApplicationDto) {
 
         String turkishIdentityNumber = creditApplicationDto.getTurkishIdentityNumber();
-        LocalDate dateOfBirth = creditApplicationDto.getDateOfBirth();
         BigDecimal pledgeValue = creditApplicationDto.getPledgeValue();
-        BigDecimal customerMonthlySalaryFromDto = creditApplicationDto.getMonthlySalary();
         int creditScore = creditScoreService.getCreditScore(turkishIdentityNumber);
         CreditResultEnum creditResultEnum = creditScoreService.getCreditScoreEnum(turkishIdentityNumber);
 
-        Optional<Customer> customerOptional = customerDao.findCustomerByTurkishIdentityNumber(turkishIdentityNumber); //TODO: bu sorguya dateOfBirth'te mi koysak
+        if(customerDao.findCustomerByTurkishIdentityNumber(turkishIdentityNumber).isPresent()){
+            throw new RuntimeException("Already applied for credit, can't apply unless deleting the application"); //TODO: silmek uri oluşturup dönebilirsin
+        }
 
+        Optional<Customer> customerOptional = customerDao.findCustomerByTurkishIdentityNumber(turkishIdentityNumber);
         if(customerOptional.isPresent()){
 
             Customer customer = customerOptional.get();
-            BigDecimal customerMonthlySalaryFromDB = customer.getMonthlySalary();
 
-            if(customerMonthlySalaryFromDB.compareTo(customerMonthlySalaryFromDto) == 0){
-
-                CreditProducedInFactory creditProducedInFactory = CreditFactory.getCredit(creditScore,creditResultEnum,customer,pledgeValue);
-                Credit credit = CreditMapper.INSTANCE.convertCreditProducedFactoryToCredit(creditProducedInFactory);
-                creditDao.save(credit);
-                CreditApplicationResultDto creditApplicationResultDto = CreditMapper.INSTANCE.convertCreditToCreditApplicationResultDto(credit);
-                return creditApplicationResultDto;
-                //TODO:SMS gönder
-
-
-            }else{
+            if(customer.getDateOfBirth().compareTo(creditApplicationDto.getDateOfBirth()) != 0) {
                 throw new SalaryNotMatchException("Salary in the request and database are not identical. If salary of customer has changed, update it first.");
             }
+            if(!customer.getPhoneNumber().equals(creditApplicationDto.getPhoneNumber())){
+               throw new PhoneNumbersNotMatchException("Phone numbers in the request and database are not identical. If phone number of customer has changed, update it first.");
+            }
+
+            CreditProducedInFactory creditProducedInFactory = CreditFactory.getCredit(creditScore,creditResultEnum,customer,pledgeValue);
+            Credit credit = CreditMapper.INSTANCE.convertCreditProducedFactoryToCredit(creditProducedInFactory);
+            creditDao.save(credit);
+            //TODO:SMS gönder
+
+            CreditApplicationResultDto creditApplicationResultDto = CreditMapper.INSTANCE.convertCreditToCreditApplicationResultDto(credit);
+            return creditApplicationResultDto;
+
 
 
         }else{
@@ -72,10 +73,12 @@ public class CreditService {
             CreditProducedInFactory creditProducedInFactory = CreditFactory.getCredit(creditScore,creditResultEnum,customer,pledgeValue);
             Credit credit = CreditMapper.INSTANCE.convertCreditProducedFactoryToCredit(creditProducedInFactory);
             creditDao.save(credit);
+            //TODO:SMS gönder
+
             CreditApplicationResultDto creditApplicationResultDto = CreditMapper.INSTANCE.convertCreditToCreditApplicationResultDto(credit);
             return creditApplicationResultDto;
 
-            //TODO:SMS gönder
+
 
         }
 
@@ -95,4 +98,6 @@ public class CreditService {
         }
 
     }
+
+
 }

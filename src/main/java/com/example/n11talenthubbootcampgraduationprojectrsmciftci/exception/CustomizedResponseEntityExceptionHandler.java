@@ -66,6 +66,18 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
         return new ResponseEntity(exceptionResponse, HttpStatus.CONFLICT);
     }
+    @ExceptionHandler
+    public final ResponseEntity<Object> handleAllExceptions(PhoneNumbersNotMatchException ex, WebRequest webRequest){
+
+        Date errorDate = new Date();
+        String message = ex.getMessage();
+        String description = webRequest.getDescription(false);
+
+        com.example.n11talenthubbootcampgraduationprojectrsmciftci.exception.ExceptionResponse exceptionResponse =
+                new com.example.n11talenthubbootcampgraduationprojectrsmciftci.exception.ExceptionResponse(errorDate, message, description);
+
+        return new ResponseEntity(exceptionResponse, HttpStatus.CONFLICT);
+    }
 
 
 }

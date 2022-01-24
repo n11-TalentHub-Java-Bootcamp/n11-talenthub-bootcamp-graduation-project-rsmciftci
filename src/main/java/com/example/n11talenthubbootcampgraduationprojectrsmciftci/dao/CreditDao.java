@@ -21,4 +21,5 @@ public interface CreditDao extends JpaRepository<Credit,Long> {
             " AND customer.dateOfBirth = :dateOfBirth")
     Optional<Credit> findCreditApplication(String turkishIdentityNumber, LocalDate dateOfBirth);
 
+    Optional<Credit> findCreditByCustomer_TurkishIdentityNumber(String turkishIdentityNumber);
 }
