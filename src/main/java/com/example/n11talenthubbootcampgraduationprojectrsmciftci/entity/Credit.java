@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
@@ -13,10 +14,11 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Credit {
+public class Credit{
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "Credit", sequenceName = "CREDIT_ID_SEQ")
+    @GeneratedValue(generator = "Credit")
     private Long id;
 
 
@@ -27,7 +29,7 @@ public class Credit {
     @Enumerated(EnumType.STRING)
     private CreditResultEnum creditResultEnum;
     private int creditScore;
-    @OneToOne()
+    @OneToOne
     @JoinColumn(name="turkish_identity_number",referencedColumnName = "turkishIdentityNumber",unique = true)
     private Customer customer;
 

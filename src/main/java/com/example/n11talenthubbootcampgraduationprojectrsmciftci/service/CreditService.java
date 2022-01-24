@@ -13,6 +13,8 @@ import com.example.n11talenthubbootcampgraduationprojectrsmciftci.exception.Sala
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.factory.CreditProducedInFactory;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.factory.CreditFactory;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -77,6 +79,20 @@ public class CreditService {
 
         }
 
+
+    }
+
+    public ResponseEntity findCreditApplication(String turkishIdentityNumber, LocalDate dateOfBirth) {
+
+        Optional<Credit> optionalCredit = creditDao.findCreditApplication(turkishIdentityNumber, dateOfBirth);
+        if(optionalCredit.isPresent()){
+            Credit credit = optionalCredit.get();
+            CreditApplicationResultDto creditApplicationResultDto = CreditMapper.INSTANCE.convertCreditToCreditApplicationResultDto(credit);
+            return ResponseEntity.ok(creditApplicationResultDto);
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Turkish identity number and date of birth didn't match!\n" +
+                    "Or Credit application hasn't been found!");
+        }
 
     }
 }
