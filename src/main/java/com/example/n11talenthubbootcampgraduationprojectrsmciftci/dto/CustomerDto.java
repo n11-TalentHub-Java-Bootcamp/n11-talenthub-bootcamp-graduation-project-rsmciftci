@@ -5,20 +5,36 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
 public class CustomerDto {
-
+    @NotNull
     private Long id;
+    @NotNull
+    @Pattern(regexp = "^\\d+$",message = "Turkish identity number cannot include non-digit characters!")
+    @Size(min = 11,max = 11, message = "Turkish identity number must be eleven digits.")
     private String turkishIdentityNumber;
+    @NotNull
     private String name;
     private String middleName;
+    @NotNull
     private String surname;
+    @NotNull
+    @Pattern(regexp = "^\\d+$",message = "Phone number cannot include non-digit characters!")
+    @Size(min = 10,max = 11, message = " Phone number must be eleven or ten digits!")
     private String phoneNumber;
+    @Email
+    @NotNull
     private String email;
+    @Past
+    @NotNull
     private LocalDate dateOfBirth;
+    @DecimalMin(value = "0.0")
+    @Digits(integer = 10,fraction = 2)
+    @NotNull
     private BigDecimal monthlySalary;
 
 }
