@@ -39,10 +39,6 @@ public class CreditService {
         int creditScore = creditScoreService.getCreditScore(turkishIdentityNumber);
         CreditResultEnum creditResultEnum = creditScoreService.getCreditScoreEnum(turkishIdentityNumber);
 
-        if(customerDao.findCustomerByTurkishIdentityNumber(turkishIdentityNumber).isPresent()){
-            throw new RuntimeException("Already applied for credit, can't apply unless deleting the application"); //TODO: silmek uri oluşturup dönebilirsin
-        }
-
         Optional<Customer> customerOptional = customerDao.findCustomerByTurkishIdentityNumber(turkishIdentityNumber);
         if(customerOptional.isPresent()){
 
