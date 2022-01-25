@@ -23,7 +23,7 @@ public class Credit{
 
 
     @Column(scale = 2)// TODO:scale 2
-    private BigDecimal pledgeValue; // TODO: valitadion?
+    private BigDecimal pledgeValue; 
     @Column(scale = 2)
     private BigDecimal creditLimit;
     @Enumerated(EnumType.STRING)

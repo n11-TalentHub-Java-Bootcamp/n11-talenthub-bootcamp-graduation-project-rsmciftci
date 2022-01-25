@@ -32,7 +32,7 @@ public class CustomerDto {
     @NotNull
     private LocalDate dateOfBirth;
     @DecimalMin(value = "0.0")
-    @Digits(integer = 10,fraction = 2)
+    @Digits(integer = 19,fraction = 2)
     @NotNull
     private BigDecimal monthlySalary;
 

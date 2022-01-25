@@ -18,7 +18,7 @@ public class CustomerSavingDto {
     private String surname;
     @NotNull
     @Pattern(regexp = "^\\d+$",message = "Phone number cannot include non-digit characters!")
-    @Size(min = 10,max = 11, message = " Phone number must be eleven or ten digits!")
+    @Size(min = 11,max = 11, message = " Phone number must be eleven or ten digits!")
     private String phoneNumber;
     @Email
     @NotNull
@@ -27,7 +27,7 @@ public class CustomerSavingDto {
     @NotNull
     private LocalDate dateOfBirth;
     @DecimalMin(value = "0.0")
-    @Digits(integer = 10,fraction = 2)
+    @Digits(integer = 19,fraction = 2)
     @NotNull
     private BigDecimal monthlySalary;
 }

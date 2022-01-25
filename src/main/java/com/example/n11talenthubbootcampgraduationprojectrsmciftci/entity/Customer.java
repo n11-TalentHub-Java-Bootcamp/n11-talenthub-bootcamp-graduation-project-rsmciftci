@@ -23,7 +23,6 @@ public class Customer implements Serializable {
     private Long id;
 
     @Column(unique = true,nullable = false,length = 11)
-    @Size(min=11,max=11)
     private String turkishIdentityNumber;
 
     @Column(nullable = false)
@@ -35,17 +34,15 @@ public class Customer implements Serializable {
     private String surname;
 
     @Column(nullable = false,length = 11)
-    @Size(min=11,max=11) // TODO: ev telefonları 11, cep telefonları 11 haneli
     private String phoneNumber;
 
-    private String email;  //TODO: email not unique, family members emails can be saved
+    private String email;
 
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
     @Column(nullable = false, scale = 2) // TODO:scale 2
-    @Digits(fraction = 2,integer = 10)
-    private BigDecimal monthlySalary; // TODO: valitadion?
+    private BigDecimal monthlySalary;
 
 
 }
