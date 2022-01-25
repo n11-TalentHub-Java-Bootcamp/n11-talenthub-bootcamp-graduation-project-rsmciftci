@@ -19,7 +19,7 @@ public class CreditApplicationDto {
     private String surname;
     @NotNull
     @Pattern(regexp = "^\\d+$",message = "Phone number cannot include non-digit characters!")
-    @Size(min = 10,max = 11, message = " Phone number must be eleven or ten digits!")
+    @Size(min = 11,max = 11, message = " Phone number must be eleven or ten digits!")
     private String phoneNumber;
     @Email
     @NotNull

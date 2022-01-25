@@ -40,11 +40,11 @@ public class TurkishIdentityNumberValidator implements ConstraintValidator<Turki
             return false;
         }
     }
-    private static boolean isAllDigit(String value){
+    private boolean isAllDigit(String value){
 
         return value.matches("^\\d+$");
     }
-    private static boolean isUnitOfSumOfFirst10EqualTo11thNumber(String value){
+    private boolean isUnitOfSumOfFirst10EqualTo11thNumber(String value){
         int sum = 0;
         for(int i = 0; i < value.length()-1; i++){
             sum += Integer.valueOf(value.substring(i,i+1));
@@ -60,7 +60,7 @@ public class TurkishIdentityNumberValidator implements ConstraintValidator<Turki
         }
 
     }
-    private static boolean isUnitOfSumOf1st3rd5th7th9thTimes8EqualTo11thNumber(String value){
+    private boolean isUnitOfSumOf1st3rd5th7th9thTimes8EqualTo11thNumber(String value){
         int sum = 0;
         for(int i = 0 ; i < 9; i++){
             if(i % 2 == 0){
@@ -82,7 +82,7 @@ public class TurkishIdentityNumberValidator implements ConstraintValidator<Turki
 
 
     }
-    private static int calculateSumOf1st3rd5th7th9thTimes7(String value){
+    private int calculateSumOf1st3rd5th7th9thTimes7(String value){
         int sum = 0;
         for(int i = 0; i < 9; i++ ){
             if(i % 2 == 0){
@@ -93,7 +93,7 @@ public class TurkishIdentityNumberValidator implements ConstraintValidator<Turki
 
         return sumTimes7;
     }
-    private static int calculateSumOf2nd4th6th8thTimes9(String value){
+    private int calculateSumOf2nd4th6th8thTimes9(String value){
         int sum = 0;
         for(int i = 1; i < 8; i++ ){
             if(i % 2 == 1){

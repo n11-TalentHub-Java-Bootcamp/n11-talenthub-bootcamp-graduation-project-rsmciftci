@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Target( { ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TurkishIdentityNumber {
-    String message() default "Invalid phone number";
+    String message() default "Invalid Turkish Identity Number";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
