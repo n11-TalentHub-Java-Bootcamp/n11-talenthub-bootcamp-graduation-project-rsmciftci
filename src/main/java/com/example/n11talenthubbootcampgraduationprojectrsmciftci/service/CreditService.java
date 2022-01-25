@@ -50,8 +50,8 @@ public class CreditService {
             if(!customer.getPhoneNumber().equals(creditApplicationDto.getPhoneNumber())){
                throw new PhoneNumbersNotMatchException("Phone numbers in the request and database are not identical. If phone number of customer has changed, update it first.");
             }
-
-            CreditProducedInFactory creditProducedInFactory = CreditFactory.getCredit(creditScore,creditResultEnum,customer,pledgeValue);
+            CreditFactory creditFactory = new CreditFactory();
+            CreditProducedInFactory creditProducedInFactory = creditFactory.getCredit(creditScore,creditResultEnum,customer,pledgeValue);
             Credit credit = CreditMapper.INSTANCE.convertCreditProducedFactoryToCredit(creditProducedInFactory);
             creditDao.save(credit);
             //TODO:SMS gönder
@@ -66,7 +66,8 @@ public class CreditService {
             Customer customer = CustomerMapper.INSTANCE.convertCreditApplicationDtoToCustomer(creditApplicationDto);
             customerDao.save(customer);
 
-            CreditProducedInFactory creditProducedInFactory = CreditFactory.getCredit(creditScore,creditResultEnum,customer,pledgeValue);
+            CreditFactory creditFactory = new CreditFactory();
+            CreditProducedInFactory creditProducedInFactory = creditFactory.getCredit(creditScore,creditResultEnum,customer,pledgeValue);
             Credit credit = CreditMapper.INSTANCE.convertCreditProducedFactoryToCredit(creditProducedInFactory);
             creditDao.save(credit);
             //TODO:SMS gönder

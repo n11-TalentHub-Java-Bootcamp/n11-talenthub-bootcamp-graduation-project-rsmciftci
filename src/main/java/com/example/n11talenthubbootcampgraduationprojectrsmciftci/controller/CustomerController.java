@@ -1,10 +1,14 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.controller;
 
+
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerSavingDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CreditScoreService;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CustomerService;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +42,8 @@ public class CustomerController {
     public String findCreditScoreEnum(@PathVariable String turkishIdentityNumber){
         return creditScoreService.getCreditScoreEnum(turkishIdentityNumber).toString();
     }
+
+
 
 
 
