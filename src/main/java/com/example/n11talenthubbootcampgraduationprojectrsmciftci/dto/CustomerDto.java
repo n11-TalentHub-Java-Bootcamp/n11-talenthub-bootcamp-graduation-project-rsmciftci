@@ -1,5 +1,6 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto;
 
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.validation.TurkishIdentityNumber;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -13,9 +14,7 @@ import java.time.LocalDate;
 public class CustomerDto {
     @NotNull
     private Long id;
-    @NotNull
-    @Pattern(regexp = "^\\d+$",message = "Turkish identity number cannot include non-digit characters!")
-    @Size(min = 11,max = 11, message = "Turkish identity number must be eleven digits.")
+    @TurkishIdentityNumber
     private String turkishIdentityNumber;
     @NotNull
     private String name;

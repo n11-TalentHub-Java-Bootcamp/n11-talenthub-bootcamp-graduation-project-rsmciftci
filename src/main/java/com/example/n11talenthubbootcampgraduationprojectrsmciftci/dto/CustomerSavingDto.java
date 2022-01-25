@@ -1,5 +1,6 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto;
 
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.validation.TurkishIdentityNumber;
 import lombok.Data;
 
 import javax.validation.constraints.*;
@@ -7,9 +8,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 @Data
 public class CustomerSavingDto {
-    @NotNull
-    @Pattern(regexp = "^\\d+$",message = "Turkish identity number cannot include non-digit characters!")
-    @Size(min = 11,max = 11, message = "Turkish identity number must be eleven digits.")
+
+    @TurkishIdentityNumber
     private String turkishIdentityNumber;
     @NotNull
     private String name;
