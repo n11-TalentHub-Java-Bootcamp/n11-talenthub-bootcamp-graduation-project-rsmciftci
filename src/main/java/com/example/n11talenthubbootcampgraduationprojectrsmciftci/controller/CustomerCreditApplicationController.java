@@ -22,9 +22,13 @@ public class CustomerCreditApplicationController {
     private CreditService creditService;
 
     @PostMapping("")
-    public CreditApplicationResultDto saveCreditApplicationAndSendSMSIfCustomerExistsIfNotSaveCustomerThenCreditApplicationAndSendSMS(@RequestBody @Valid CreditApplicationDto creditApplicationDto) {
-        CreditApplicationResultDto creditApplicationResultDto = creditService.saveCreditApplicationAndSendSMSIfCustomerExistsIfNotSaveCustomerThenCreditApplicationAndSendSMS(creditApplicationDto);
+    public CreditApplicationResultDto saveCreditApplicationAndSendSMSIfCustomerExistsIfNotSaveCustomerThenCreditApplicationAndSendSMS(
+            @RequestBody @Valid CreditApplicationDto creditApplicationDto) {
+
+        CreditApplicationResultDto creditApplicationResultDto =
+                creditService.saveCreditApplicationAndSendSMSIfCustomerExistsIfNotSaveCustomerThenCreditApplicationAndSendSMS(creditApplicationDto);
         return creditApplicationResultDto;
+
     }
 
 

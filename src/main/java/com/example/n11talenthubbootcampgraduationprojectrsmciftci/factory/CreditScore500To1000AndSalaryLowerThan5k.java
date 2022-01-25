@@ -6,7 +6,7 @@ import com.example.n11talenthubbootcampgraduationprojectrsmciftci.enums.CreditRe
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class CsHigherThan999 implements CreditProducedInFactory {
+public class CreditScore500To1000AndSalaryLowerThan5k implements CreditProducedInFactory {
 
     int creditScore;
     CreditResultEnum creditResultEnum;
@@ -14,13 +14,12 @@ public class CsHigherThan999 implements CreditProducedInFactory {
     BigDecimal creditLimit;
     BigDecimal pledgeValue;
 
-    public CsHigherThan999(int creditScore, CreditResultEnum creditResultEnum, Customer customer , BigDecimal pledgeValue) {
+    public CreditScore500To1000AndSalaryLowerThan5k(int creditScore, CreditResultEnum creditResultEnum, Customer customer , BigDecimal pledgeValue) {
 
         this.creditScore = creditScore;
         this.creditResultEnum = creditResultEnum;
         this.customer = customer;
-        this.creditLimit = customer.getMonthlySalary().multiply(BigDecimal.valueOf(4)).add(pledgeValue.multiply(BigDecimal.valueOf(0.5))) // TODO: kredi limit çarpanı 4/2den geliyor
-                .setScale(2, RoundingMode.HALF_EVEN);;
+        this.creditLimit = BigDecimal.valueOf(10000).add(pledgeValue.multiply(BigDecimal.valueOf(0.1))).setScale(2, RoundingMode.HALF_EVEN);;
         this.pledgeValue = pledgeValue;
     }
 
@@ -51,7 +50,7 @@ public class CsHigherThan999 implements CreditProducedInFactory {
 
     @Override
     public String toString() {
-        return "CsHigherThan999{" +
+        return "CS500To1000AndSalaryLowerThan5k{" +
                 "creditScore=" + creditScore +
                 ", creditResultEnum=" + creditResultEnum +
                 ", customer=" + customer +

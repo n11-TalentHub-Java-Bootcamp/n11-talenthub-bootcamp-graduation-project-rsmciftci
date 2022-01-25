@@ -6,11 +6,11 @@ import com.example.n11talenthubbootcampgraduationprojectrsmciftci.enums.CreditRe
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class CS500To1000AndSalaryHigherThan9999 implements CreditProducedInFactory {
+public class CreditScore500To1000AndSalary5kTo10k implements CreditProducedInFactory {
     /*
      * For this class,
      *  creditScore = [500,1000)
-     *  salary >= 10k
+     *  salary = [5000,10000)
      */
 
 
@@ -20,16 +20,14 @@ public class CS500To1000AndSalaryHigherThan9999 implements CreditProducedInFacto
     BigDecimal creditLimit;
     BigDecimal pledgeValue;
 
-
-    public CS500To1000AndSalaryHigherThan9999(  int creditScore,CreditResultEnum creditResultEnum, Customer customer , BigDecimal pledgeValue) {
-
-        this.creditScore = creditScore;
+    public CreditScore500To1000AndSalary5kTo10k(int creditScore, CreditResultEnum creditResultEnum, Customer customer , BigDecimal pledgeValue) {
         this.creditResultEnum = creditResultEnum;
+        this.creditScore = creditScore;
         this.customer = customer;
-        this.creditLimit = customer.getMonthlySalary().multiply(BigDecimal.valueOf(2)).add(pledgeValue.multiply(BigDecimal.valueOf(0.25))) // TODO: kredi limit çarpanı 4/2den geliyor
-                .setScale(2,RoundingMode.HALF_EVEN);
+        this.creditLimit = BigDecimal.valueOf(20000).add(pledgeValue.multiply(BigDecimal.valueOf(0.2))).setScale(2, RoundingMode.HALF_EVEN);
         this.pledgeValue = pledgeValue;
     }
+
 
     @Override
     public CreditResultEnum getCreditResultEnum() {
@@ -58,7 +56,7 @@ public class CS500To1000AndSalaryHigherThan9999 implements CreditProducedInFacto
 
     @Override
     public String toString() {
-        return "CS500To1000AndSalaryHigherThan9999{" +
+        return "CS500To1000AndSalary5kTo10k{" +
                 "creditScore=" + creditScore +
                 ", creditResultEnum=" + creditResultEnum +
                 ", customer=" + customer +

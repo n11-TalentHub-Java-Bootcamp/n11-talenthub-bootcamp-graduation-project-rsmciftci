@@ -13,16 +13,16 @@ public class CreditFactory {
             creditProducedInFactory = new CreditProducedInFactoryScoreLowerThan500(creditScore, creditResultEnum,customer,pledgeValue);
         }else if(creditScore >= 500 && creditScore < 1000){
             if(monthlySalary.compareTo(BigDecimal.valueOf(5000)) == -1){
-                creditProducedInFactory = new CS500To1000AndSalaryLowerThan5k(creditScore, creditResultEnum,customer,pledgeValue);
+                creditProducedInFactory = new CreditScore500To1000AndSalaryLowerThan5k(creditScore, creditResultEnum,customer,pledgeValue);
             }else if(monthlySalary.compareTo(BigDecimal.valueOf(10000)) == -1){
-                creditProducedInFactory = new CS500To1000AndSalary5kTo10k(creditScore, creditResultEnum,customer,pledgeValue);
+                creditProducedInFactory = new CreditScore500To1000AndSalary5kTo10k(creditScore, creditResultEnum,customer,pledgeValue);
             }else if(monthlySalary.compareTo(BigDecimal.valueOf(10000)) == 0 || monthlySalary.compareTo(BigDecimal.valueOf(10000)) == 1){
-                creditProducedInFactory = new CS500To1000AndSalaryHigherThan9999(creditScore, creditResultEnum,customer,pledgeValue);
+                creditProducedInFactory = new CreditScore500To1000AndSalaryHigherThan9999(creditScore, creditResultEnum,customer,pledgeValue);
             }else{
                 throw new RuntimeException("Credit limit couldn't be produced at CreditFactory.");
             }
         }else if(creditScore > 1000){
-            creditProducedInFactory = new CsHigherThan999(creditScore, creditResultEnum,customer,pledgeValue);
+            creditProducedInFactory = new CreditScoreHigherThan999(creditScore, creditResultEnum,customer,pledgeValue);
         }else{
             throw new RuntimeException("Credit limit couldn't be produced at CreditFactory.");
         }
