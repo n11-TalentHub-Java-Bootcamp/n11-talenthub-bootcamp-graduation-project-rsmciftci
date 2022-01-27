@@ -34,15 +34,11 @@ public class CustomerService {
         return customerDtoSaved;
     }
 
-    public ResponseEntity delete(String turkishIdentityNumber, LocalDate dateOfBirt){
-        Optional<Customer> optionalCustomer = customerDao.findCustomerByTurkishIdentityNumberAndDateOfBirth(turkishIdentityNumber,dateOfBirt);
-        if(optionalCustomer.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Turkish identity number & date of birth didn't match with any customer.");
-        }else{
-            Customer customer = optionalCustomer.get();
-            customerDao.delete(customer);
-            return ResponseEntity.ok("Customer Successfully Deleted");
-        }
+    public void delete(String turkishIdentityNumber, LocalDate dateOfBirt) {
+
+        Customer customer = customerDao.findCustomerByTurkishIdentityNumberAndDateOfBirth(turkishIdentityNumber, dateOfBirt);
+        customerDao.delete(customer);
+
 
     }
 }
