@@ -19,6 +19,7 @@ public class CustomerService {
 
     private CustomerDao customerDao;
 
+
     public CustomerDto save(CustomerSavingDto customerSavingDto){
         Customer customer = CustomerMapper.INSTANCE.convertCustomerSavingDtoToCustomer(customerSavingDto);
         customer = customerDao.save(customer);
@@ -30,7 +31,7 @@ public class CustomerService {
         Customer customer = CustomerMapper.INSTANCE.convertCustomerDtoToCustomer(customerDto);
         customer = customerDao.save(customer);
         CustomerDto customerDtoSaved = CustomerMapper.INSTANCE.convertCustomerToCustomerDto(customer);
-        return customerDto;
+        return customerDtoSaved;
     }
 
     public ResponseEntity delete(String turkishIdentityNumber, LocalDate dateOfBirt){

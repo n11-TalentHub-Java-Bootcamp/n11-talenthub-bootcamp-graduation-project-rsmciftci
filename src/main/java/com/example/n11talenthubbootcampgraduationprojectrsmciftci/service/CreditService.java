@@ -44,6 +44,7 @@ public class CreditService {
 
             Customer customer = customerOptional.get();
 
+
             if(customer.getDateOfBirth().compareTo(creditApplicationDto.getDateOfBirth()) != 0) {
                 throw new SalaryNotMatchException("Salary in the request and database are not identical. If salary of customer has changed, update it first.");
             }

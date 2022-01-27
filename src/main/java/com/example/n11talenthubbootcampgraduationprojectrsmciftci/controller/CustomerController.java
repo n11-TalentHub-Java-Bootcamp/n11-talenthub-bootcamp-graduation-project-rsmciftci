@@ -23,6 +23,7 @@ public class CustomerController {
     private CustomerService customerService;
     private CreditScoreService creditScoreService;
 
+
     @PostMapping("")
     public  CustomerDto save(@RequestBody @Valid CustomerSavingDto customerSavingDto){
         return customerService.save(customerSavingDto);
