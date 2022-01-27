@@ -3,6 +3,7 @@ package com.example.n11talenthubbootcampgraduationprojectrsmciftci.controller;
 
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerSavingDto;
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Customer;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CreditScoreService;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CustomerService;
 import lombok.AllArgsConstructor;
@@ -25,12 +26,12 @@ public class CustomerController {
 
 
     @PostMapping("")
-    public  CustomerDto save(@RequestBody @Valid CustomerSavingDto customerSavingDto){
+    public Customer save(@RequestBody @Valid CustomerSavingDto customerSavingDto){
         return customerService.save(customerSavingDto);
     }
 
     @PutMapping("")
-    public CustomerDto update(@RequestBody @Valid CustomerDto customerDto){
+    public Customer update(@RequestBody @Valid CustomerDto customerDto){
         return customerService.update(customerDto);
     }
 

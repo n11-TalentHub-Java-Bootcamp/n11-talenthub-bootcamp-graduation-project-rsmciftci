@@ -53,7 +53,7 @@ public class CreditService {
             Credit credit = CreditMapper.INSTANCE.convertCreditProducedFactoryToCredit(creditProducedInFactory);
             creditDao.save(credit);
             CreditApplicationResultDto creditApplicationResultDto = CreditMapper.INSTANCE.convertCreditToCreditApplicationResultDto(credit);
-            //TODO: send sms here
+            //TODO: send sms here, try and catche almalı mıyız?
             return ResponseEntity.ok(creditApplicationResultDto);
 
         }else{

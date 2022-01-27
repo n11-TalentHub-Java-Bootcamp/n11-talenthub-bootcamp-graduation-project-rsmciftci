@@ -10,8 +10,6 @@ public class CreditScoreService {
 
     public CreditResultEnum getCreditScoreEnum(String turkishIdentityNumber){
 
-
-
         Integer lastThreeDigitsOfTurkishIdentityNumber = Integer.valueOf(turkishIdentityNumber.substring(8,11));
         int creditScore = lastThreeDigitsOfTurkishIdentityNumber + 100;
 
@@ -25,8 +23,6 @@ public class CreditScoreService {
     }
 
     public int getCreditScore(String turkishIdentityNumber){
-
-
 
         Integer lastThreeDigitsOfTurkishIdentityNumber = Integer.valueOf(turkishIdentityNumber.substring(8,11));
         int creditScore = lastThreeDigitsOfTurkishIdentityNumber + 100;

@@ -7,7 +7,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-01-25T20:08:34+0300",
+    date = "2022-01-27T22:45:35+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Ubuntu)"
 )
 public class CreditMapperImpl implements CreditMapper {

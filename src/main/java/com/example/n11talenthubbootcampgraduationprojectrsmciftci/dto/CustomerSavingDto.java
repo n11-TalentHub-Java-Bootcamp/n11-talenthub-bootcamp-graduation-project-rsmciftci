@@ -8,7 +8,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 @Data
 public class CustomerSavingDto {
-
+    @Null
+    private Long id;
     @TurkishIdentityNumber
     private String turkishIdentityNumber;
     @NotNull

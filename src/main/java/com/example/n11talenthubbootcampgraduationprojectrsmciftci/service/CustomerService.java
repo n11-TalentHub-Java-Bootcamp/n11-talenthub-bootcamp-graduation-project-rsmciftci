@@ -20,18 +20,16 @@ public class CustomerService {
     private CustomerDao customerDao;
 
 
-    public CustomerDto save(CustomerSavingDto customerSavingDto){
+    public Customer save(CustomerSavingDto customerSavingDto){
         Customer customer = CustomerMapper.INSTANCE.convertCustomerSavingDtoToCustomer(customerSavingDto);
         customer = customerDao.save(customer);
-        CustomerDto customerDto = CustomerMapper.INSTANCE.convertCustomerToCustomerDto(customer);
-        return customerDto;
+        return customer;
     }
 
-    public CustomerDto update(CustomerDto customerDto){
+    public Customer update(CustomerDto customerDto){
         Customer customer = CustomerMapper.INSTANCE.convertCustomerDtoToCustomer(customerDto);
         customer = customerDao.save(customer);
-        CustomerDto customerDtoSaved = CustomerMapper.INSTANCE.convertCustomerToCustomerDto(customer);
-        return customerDto;
+        return customer;
     }
 
     public ResponseEntity delete(String turkishIdentityNumber, LocalDate dateOfBirt){
