@@ -25,21 +25,18 @@ public class CustomerController {
 
 
     @PostMapping("")
-    public ResponseEntity save(@RequestBody @Valid CustomerSavingDto customerSavingDto){
-
-        CustomerDto customerDto = customerService.save(customerSavingDto);
-        return ResponseEntity.ok(customerDto);
+    public  CustomerDto save(@RequestBody @Valid CustomerSavingDto customerSavingDto){
+        return customerService.save(customerSavingDto);
     }
 
     @PutMapping("")
-    public ResponseEntity update(@RequestBody @Valid CustomerDto customerDto){
-        CustomerDto savedCustomerDto = customerService.update(customerDto);
-        return ResponseEntity.ok(savedCustomerDto);
+    public CustomerDto update(@RequestBody @Valid CustomerDto customerDto){
+        return customerService.update(customerDto);
     }
 
     @DeleteMapping("delete-by-{turkishIdentityNumber}&{dateOfBirth}")
-    public void deleteCustomer(@PathVariable String turkishIdentityNumber, @PathVariable String dateOfBirth){
-        customerService.delete(turkishIdentityNumber,LocalDate.parse(dateOfBirth));
+    public ResponseEntity deleteCustomer(@PathVariable String turkishIdentityNumber, @PathVariable String dateOfBirth){
+        return customerService.delete(turkishIdentityNumber,LocalDate.parse(dateOfBirth));
     }
 
     @GetMapping("{turkishIdentityNumber}") // TODO: creditScoru'n burada olması doğru mu?

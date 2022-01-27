@@ -31,14 +31,18 @@ public class CustomerService {
         Customer customer = CustomerMapper.INSTANCE.convertCustomerDtoToCustomer(customerDto);
         customer = customerDao.save(customer);
         CustomerDto customerDtoSaved = CustomerMapper.INSTANCE.convertCustomerToCustomerDto(customer);
-        return customerDtoSaved;
+        return customerDto;
     }
 
-    public void delete(String turkishIdentityNumber, LocalDate dateOfBirt) {
-
-        Customer customer = customerDao.findCustomerByTurkishIdentityNumberAndDateOfBirth(turkishIdentityNumber, dateOfBirt);
-        customerDao.delete(customer);
-
+    public ResponseEntity delete(String turkishIdentityNumber, LocalDate dateOfBirt){
+        Optional<Customer> optionalCustomer = customerDao.findCustomerByTurkishIdentityNumberAndDateOfBirth(turkishIdentityNumber,dateOfBirt);
+        if(optionalCustomer.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Turkish identity number & date of birth didn't match with any customer.");
+        }else{
+            Customer customer = optionalCustomer.get();
+            customerDao.delete(customer);
+            return ResponseEntity.ok("Customer Successfully Deleted");
+        }
 
     }
 }
