@@ -1,7 +1,6 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.controller;
 
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CreditApplicationDto;
-import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CreditApplicationResultDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CreditScoreService;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CreditService;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CustomerService;
@@ -22,12 +21,10 @@ public class CustomerCreditApplicationController {
     private CreditService creditService;
 
     @PostMapping("")
-    public CreditApplicationResultDto saveCreditApplicationAndSendSMSIfCustomerExistsIfNotSaveCustomerThenCreditApplicationAndSendSMS(
+    public ResponseEntity saveCreditApplicationAndSendSMSIfCustomerExistsIfNotSaveCustomerThenCreditApplicationAndSendSMS(
             @RequestBody @Valid CreditApplicationDto creditApplicationDto) {
+            return creditService.saveCredit(creditApplicationDto);
 
-        CreditApplicationResultDto creditApplicationResultDto =
-                creditService.saveCreditApplicationAndSendSMSIfCustomerExistsIfNotSaveCustomerThenCreditApplicationAndSendSMS(creditApplicationDto);
-        return creditApplicationResultDto;
 
     }
 

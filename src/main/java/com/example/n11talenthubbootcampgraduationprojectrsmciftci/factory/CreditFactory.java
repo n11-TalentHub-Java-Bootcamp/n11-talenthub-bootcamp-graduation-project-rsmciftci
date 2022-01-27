@@ -12,7 +12,7 @@ public class CreditFactory {
 
 
 
-    public CreditProducedInFactory getCredit(int creditScore, CreditResultEnum creditResultEnum, Customer customer, BigDecimal pledgeValue){
+    public static CreditProducedInFactory getCredit(int creditScore, CreditResultEnum creditResultEnum, Customer customer, BigDecimal pledgeValue){
 
 
 
