@@ -57,4 +57,81 @@ public class CustomerDataProvider {
         customerDto.setMonthlySalary(BigDecimal.valueOf(5000.00));
         return customerDto;
     }
+
+    public static Customer getCustomerCreditScoreLowerThan500(){
+        Customer customer = new Customer();
+        customer.setId(1L);
+        customer.setTurkishIdentityNumber("63488754308");
+        customer.setName("Rasim");
+        customer.setMiddleName("");
+        customer.setSurname("Ciftci");
+        customer.setPhoneNumber("05413735686");
+        customer.setEmail("rsmciftci@gmail.com");
+        customer.setDateOfBirth(LocalDate.parse("1993-05-03"));
+        customer.setMonthlySalary(BigDecimal.valueOf(5000.00));
+
+        return customer;
+    }
+
+    public static Customer getCustomerCreditScoreHigherThan999(){
+        Customer customer = new Customer();
+        customer.setId(1L);
+        customer.setTurkishIdentityNumber("97180504992");
+        customer.setName("Rasim");
+        customer.setMiddleName("");
+        customer.setSurname("Ciftci");
+        customer.setPhoneNumber("05413735686");
+        customer.setEmail("rsmciftci@gmail.com");
+        customer.setDateOfBirth(LocalDate.parse("1993-05-03"));
+        customer.setMonthlySalary(BigDecimal.valueOf(5000.00));
+
+        return customer;
+    }
+
+
+
+    public static Customer CreditScore500To1000AndSalaryLowerThan5k(){
+        Customer customer = new Customer();
+        customer.setId(1L);
+        customer.setTurkishIdentityNumber("20611333458");
+        customer.setName("Rasim");
+        customer.setMiddleName("");
+        customer.setSurname("Ciftci");
+        customer.setPhoneNumber("05413735686");
+        customer.setEmail("rsmciftci@gmail.com");
+        customer.setDateOfBirth(LocalDate.parse("1993-05-03"));
+        customer.setMonthlySalary(BigDecimal.valueOf(4000.00));
+
+        return customer;
+    }
+
+    public static Customer CreditScore500To1000AndSalary5kTo10k() {
+        Customer customer = new Customer();
+        customer.setId(1L);
+        customer.setTurkishIdentityNumber("20611333458");
+        customer.setName("Rasim");
+        customer.setMiddleName("");
+        customer.setSurname("Ciftci");
+        customer.setPhoneNumber("05413735686");
+        customer.setEmail("rsmciftci@gmail.com");
+        customer.setDateOfBirth(LocalDate.parse("1993-05-03"));
+        customer.setMonthlySalary(BigDecimal.valueOf(7000.00));
+        return customer;
+
+
+    }
+
+    public static Customer CreditScore500To1000AndSalaryHigherThan9999() {
+        Customer customer = new Customer();
+        customer.setId(1L);
+        customer.setTurkishIdentityNumber("20611333458");
+        customer.setName("Rasim");
+        customer.setMiddleName("");
+        customer.setSurname("Ciftci");
+        customer.setPhoneNumber("05413735686");
+        customer.setEmail("rsmciftci@gmail.com");
+        customer.setDateOfBirth(LocalDate.parse("1993-05-03"));
+        customer.setMonthlySalary(BigDecimal.valueOf(15000.00));
+        return customer;
+    }
 }
