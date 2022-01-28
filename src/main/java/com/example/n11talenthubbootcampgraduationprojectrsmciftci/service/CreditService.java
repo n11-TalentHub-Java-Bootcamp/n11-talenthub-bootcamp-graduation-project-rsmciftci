@@ -32,6 +32,7 @@ public class CreditService {
     private CreditDao creditDao;
     private CustomerDao customerDao;
     private CreditScoreService creditScoreService;
+    private SmsService smsService;
 
     public ResponseEntity saveCredit(CreditApplicationDto creditApplicationDto) {
 
@@ -56,6 +57,8 @@ public class CreditService {
             creditDao.save(credit);
             CreditApplicationResultDto creditApplicationResultDto = CreditMapper.INSTANCE.convertCreditToCreditApplicationResultDto(credit);
             //TODO: send sms here, try and catche almalı mıyız?
+            String message = "TEST MESSAGE.\n"+"CREDIT "+credit.getCreditResultEnum()+".\nCredit Limit is "+ credit.getCreditLimit()+" TL.";
+            smsService.sendSms(message,customer.getPhoneNumber().substring(1));
             return ResponseEntity.ok(creditApplicationResultDto);
 
         }else{

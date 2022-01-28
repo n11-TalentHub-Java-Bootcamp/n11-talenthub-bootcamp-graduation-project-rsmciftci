@@ -6,6 +6,7 @@ import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerSa
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Customer;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CreditScoreService;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CustomerService;
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.SmsService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
@@ -25,6 +26,7 @@ public class CustomerController {
     private CreditScoreService creditScoreService;
 
 
+
     @PostMapping("")
     public Customer save(@RequestBody @Valid CustomerSavingDto customerSavingDto){
         return customerService.save(customerSavingDto);
@@ -40,7 +42,7 @@ public class CustomerController {
         return customerService.delete(turkishIdentityNumber,LocalDate.parse(dateOfBirth));
     }
 
-    @GetMapping("{turkishIdentityNumber}") // TODO: creditScoru'n burada olması doğru mu?
+    @GetMapping("{turkishIdentityNumber}")
     public String findCreditScoreEnum(@PathVariable String turkishIdentityNumber){
         return creditScoreService.getCreditScoreEnum(turkishIdentityNumber).toString();
     }
