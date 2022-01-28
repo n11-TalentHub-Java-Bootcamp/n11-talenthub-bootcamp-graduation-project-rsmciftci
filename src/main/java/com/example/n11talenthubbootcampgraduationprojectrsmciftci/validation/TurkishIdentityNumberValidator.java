@@ -17,7 +17,7 @@ public class TurkishIdentityNumberValidator implements ConstraintValidator<Turki
                 if(isUnitOfSumOfFirst10EqualTo11thNumber(value)){
                     if(isUnitOfSumOf1st3rd5th7th9thTimes8EqualTo11thNumber(value)){
                         if(isZzEqualToSumOfXxAndYy(value)){
-
+                            return true;
                         }
                     }
                 }
