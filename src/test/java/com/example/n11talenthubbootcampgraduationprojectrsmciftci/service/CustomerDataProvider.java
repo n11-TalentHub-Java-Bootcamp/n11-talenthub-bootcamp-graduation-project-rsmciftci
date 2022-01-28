@@ -16,7 +16,7 @@ public class CustomerDataProvider {
         CustomerSavingDto customerSavingDto = new CustomerSavingDto();
 
         customerSavingDto.setId(null);
-        customerSavingDto.setTurkishIdentityNumber("32230419048");
+        customerSavingDto.setTurkishIdentityNumber("41009520922");
         customerSavingDto.setName("Rasim");
         customerSavingDto.setMiddleName("");
         customerSavingDto.setSurname("Ciftci");
@@ -32,7 +32,7 @@ public class CustomerDataProvider {
     public static Customer getCustomer(){
         Customer customer = new Customer();
         customer.setId(1L);
-        customer.setTurkishIdentityNumber("32230419048");
+        customer.setTurkishIdentityNumber("41009520922");
         customer.setName("Rasim");
         customer.setMiddleName("");
         customer.setSurname("Ciftci");
@@ -47,7 +47,7 @@ public class CustomerDataProvider {
     public static CustomerDto getCustomerDto() {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setId(1L);
-        customerDto.setTurkishIdentityNumber("32230419048");
+        customerDto.setTurkishIdentityNumber("41009520922");
         customerDto.setName("Rasim");
         customerDto.setMiddleName("");
         customerDto.setSurname("Ciftci");

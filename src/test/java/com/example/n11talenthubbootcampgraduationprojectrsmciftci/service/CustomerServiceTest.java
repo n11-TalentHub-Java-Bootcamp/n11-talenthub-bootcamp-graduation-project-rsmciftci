@@ -61,28 +61,28 @@ class CustomerServiceTest {
     void shouldDelete(){
 
         Customer customer = CustomerDataProvider.getCustomer();
-        when(customerDao.findCustomerByTurkishIdentityNumberAndDateOfBirth("32230419048",LocalDate.parse("1993-05-03")))
+        when(customerDao.findCustomerByTurkishIdentityNumberAndDateOfBirth("41009520922",LocalDate.parse("1993-05-03")))
                 .thenReturn(Optional.of(customer));
 
         assertTrue(Optional.of(customer).isPresent());
 
-        customerService.delete("32230419048",LocalDate.parse("1993-05-03"));
-        verify(customerDao).findCustomerByTurkishIdentityNumberAndDateOfBirth("32230419048",LocalDate.parse("1993-05-03"));
+        customerService.delete("41009520922",LocalDate.parse("1993-05-03"));
+        verify(customerDao).findCustomerByTurkishIdentityNumberAndDateOfBirth("41009520922",LocalDate.parse("1993-05-03"));
         verify(customerDao).delete(customer);
 
     }
 
     @Test
-    void shouldNotDeleteWhenOptionalIsEmpty(){
+    void shouldNotDeleteWhenCustomerIsNotSavedOrTurkishIdentityNumberAndDateOfBirthDoesntMatch(){
 
         Optional<Customer> optionalCustomer = Optional.ofNullable(null);
-        when(customerDao.findCustomerByTurkishIdentityNumberAndDateOfBirth("32230419048",LocalDate.parse("1993-05-03")))
+        when(customerDao.findCustomerByTurkishIdentityNumberAndDateOfBirth("41009520922",LocalDate.parse("1993-05-03")))
                 .thenReturn(optionalCustomer);
 
         assertFalse(optionalCustomer.isPresent());
 
-        customerService.delete("32230419048",LocalDate.parse("1993-05-03"));
-        verify(customerDao).findCustomerByTurkishIdentityNumberAndDateOfBirth("32230419048",LocalDate.parse("1993-05-03"));
+        customerService.delete("41009520922",LocalDate.parse("1993-05-03"));
+        verify(customerDao).findCustomerByTurkishIdentityNumberAndDateOfBirth("41009520922",LocalDate.parse("1993-05-03"));
 
 
 

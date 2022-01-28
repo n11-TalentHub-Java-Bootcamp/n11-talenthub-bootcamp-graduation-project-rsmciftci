@@ -14,7 +14,6 @@ public class CreditScoreService {
         int creditScore = lastThreeDigitsOfTurkishIdentityNumber + 100;
 
         if(creditScore < 500){
-
             return CreditResultEnum.REJECTED;
         }else{
 

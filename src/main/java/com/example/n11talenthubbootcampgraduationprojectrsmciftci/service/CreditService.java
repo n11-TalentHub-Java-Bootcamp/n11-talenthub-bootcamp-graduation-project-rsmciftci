@@ -12,6 +12,8 @@ import com.example.n11talenthubbootcampgraduationprojectrsmciftci.enums.CreditRe
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.factory.CreditProducedInFactory;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.factory.CreditFactory;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.apache.tomcat.jni.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -61,7 +63,8 @@ public class CreditService {
         }
     }
 
-    public ResponseEntity findCreditApplication(String turkishIdentityNumber, LocalDate dateOfBirth) {
+    public ResponseEntity findCreditApplication(String turkishIdentityNumber, String dateOfBirthString) {
+        LocalDate dateOfBirth = LocalDate.parse(dateOfBirthString);
 
         Optional<Credit> optionalCredit = creditDao.findCreditApplication(turkishIdentityNumber, dateOfBirth);
         if(optionalCredit.isPresent()){

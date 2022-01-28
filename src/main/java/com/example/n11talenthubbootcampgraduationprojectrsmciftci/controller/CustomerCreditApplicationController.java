@@ -33,7 +33,7 @@ public class CustomerCreditApplicationController {
     public ResponseEntity findCreditApplication(@PathVariable("turkishIdentityNumber") String turkishIdentityNumber,
                                                 @PathVariable("dateOfBirth") String dateOfBirth) {
 
-        return creditService.findCreditApplication(turkishIdentityNumber, LocalDate.parse(dateOfBirth));
+        return creditService.findCreditApplication(turkishIdentityNumber, dateOfBirth);
 
 
     }
