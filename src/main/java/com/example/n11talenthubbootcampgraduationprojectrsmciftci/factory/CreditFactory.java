@@ -31,7 +31,7 @@ public class CreditFactory {
             }else{
                 throw new RuntimeException("Credit limit couldn't be produced at CreditFactory.");
             }
-        }else if(creditScore > 1000){
+        }else if(creditScore >= 1000){
             creditProducedInFactory = new CreditScoreHigherThan999(creditScore, creditResultEnum,customer,pledgeValue);
         }else{
             throw new RuntimeException("Credit limit couldn't be produced at CreditFactory.");
