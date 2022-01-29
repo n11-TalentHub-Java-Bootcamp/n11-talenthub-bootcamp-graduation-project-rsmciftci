@@ -65,9 +65,6 @@ public class CustomerCreditApplicationController {
     @GetMapping("by-{turkishIdentityNumber}&{dateOfBirth}")
     public ResponseEntity findCreditApplication(@PathVariable("turkishIdentityNumber") @TurkishIdentityNumber String turkishIdentityNumber,
                                                 @PathVariable("dateOfBirth") String dateOfBirth) {
-
         return creditService.findCreditApplication(turkishIdentityNumber, dateOfBirth);
-
-
     }
 }

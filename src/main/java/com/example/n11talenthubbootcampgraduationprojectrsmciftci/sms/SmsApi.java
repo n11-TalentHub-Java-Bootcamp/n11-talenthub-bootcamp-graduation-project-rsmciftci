@@ -1,4 +1,13 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.sms;
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.N11TalenthubBootcampGraduationProjectRsmciftciApplication;
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.config.SmsApiConfig;
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.datasource.SmsApiDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStream;
@@ -9,16 +18,28 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+@Component
 public class SmsApi {
 
-	public static String excutePost( String message, String phoneNumber){
-		String targetURL = "http://api.iletimerkezi.com/v1/send-sms";
 
+
+	public static String excutePost( String message, String phoneNumber){
+
+
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(SmsApiConfig.class);
+		SmsApiDataSource smsApiDataSource = ctx.getBean(SmsApiDataSource.class);
+		String username = smsApiDataSource.getUsername();
+		String password = smsApiDataSource.getPassword();
+
+		String targetURL = "http://api.iletimerkezi.com/v1/send-sms";
 		String xml = "<request>";
 		xml += "<authentication>";
-		xml += "<username>5413735686</username>";
-		xml += "<password>123456QazWsx</password>";
+		xml += "<username>";
+		xml += username;
+		xml +=	"</username>";
+		xml += "<password>";
+		xml += password;
+		xml += "</password>";
 		xml += "</authentication>";
 		xml += "<order>";
 		xml += "<sender>RasimCiftci</sender>";

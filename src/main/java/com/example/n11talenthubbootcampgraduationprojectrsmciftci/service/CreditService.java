@@ -58,7 +58,7 @@ public class CreditService {
             CreditApplicationResultDto creditApplicationResultDto = CreditMapper.INSTANCE.convertCreditToCreditApplicationResultDto(credit);
             String message = "TEST MESSAGE.\n"+"CREDIT "+credit.getCreditResultEnum()+".\nCredit Limit is "+ credit.getCreditLimit()+" TL.";
             // TODO: sms'i aktive et
-            //smsService.sendSms(message,customer.getPhoneNumber().substring(1));
+            smsService.sendSms(message,customer.getPhoneNumber().substring(1));
             return ResponseEntity.ok(creditApplicationResultDto);
 
         }else{

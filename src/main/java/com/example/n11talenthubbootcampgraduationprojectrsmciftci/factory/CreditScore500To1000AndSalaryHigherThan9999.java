@@ -6,7 +6,7 @@ import com.example.n11talenthubbootcampgraduationprojectrsmciftci.enums.CreditRe
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class CreditScore500To1000AndSalaryHigherThan9999 implements CreditProducedInFactory {
+public class CreditScore500To1000AndSalaryHigherThan9999  implements CreditProducedInFactory{
     /*
      * For this class,
      *  creditScore = [500,1000)
@@ -21,12 +21,14 @@ public class CreditScore500To1000AndSalaryHigherThan9999 implements CreditProduc
     BigDecimal pledgeValue;
 
 
+
     public CreditScore500To1000AndSalaryHigherThan9999(int creditScore, CreditResultEnum creditResultEnum, Customer customer , BigDecimal pledgeValue) {
 
         this.creditScore = creditScore;
         this.creditResultEnum = creditResultEnum;
         this.customer = customer;
-        this.creditLimit = customer.getMonthlySalary().multiply(BigDecimal.valueOf(2)).add(pledgeValue.multiply(BigDecimal.valueOf(0.25))) // TODO: kredi limit çarpanı 4/2den geliyor
+        this.creditLimit = customer.getMonthlySalary().multiply(BigDecimal.valueOf(2))
+                .add(pledgeValue.multiply(BigDecimal.valueOf(0.25))) // TODO: kredi limit çarpanı 4/2den geliyor
                 .setScale(2,RoundingMode.HALF_EVEN);
         this.pledgeValue = pledgeValue;
     }

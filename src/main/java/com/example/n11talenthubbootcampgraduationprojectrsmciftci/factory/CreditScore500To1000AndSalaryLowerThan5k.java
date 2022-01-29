@@ -1,7 +1,9 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.factory;
 
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.datasource.CreditFactoryDataSource;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Customer;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.enums.CreditResultEnum;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 
 
@@ -17,6 +19,8 @@ public class CreditScore500To1000AndSalaryLowerThan5k implements CreditProducedI
     Customer customer;
     BigDecimal creditLimit;
     BigDecimal pledgeValue;
+
+
 
     public CreditScore500To1000AndSalaryLowerThan5k(int creditScore, CreditResultEnum creditResultEnum, Customer customer , BigDecimal pledgeValue) {
 

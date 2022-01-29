@@ -1,21 +1,32 @@
 package com.example.n11talenthubbootcampgraduationprojectrsmciftci.factory;
 
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dao.CreditDao;
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dao.CustomerDao;
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.datasource.CreditFactoryDataSource;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.entity.Customer;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.enums.CreditResultEnum;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CreditScoreService;
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CreditService;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.service.CustomerDataProvider;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 class CreditFactoryTest {
+
 
 
     @Test
