@@ -47,7 +47,6 @@ public class CreditService {
                 throw new RuntimeException("Salary didn't match with salary value in database.");
             }
 
-
             int creditScore = creditScoreService.getCreditScore(turkishIdentityNumber);
             CreditResultEnum creditResultEnum = creditScoreService.getCreditScoreEnum(turkishIdentityNumber);
             BigDecimal pledgeValue = creditApplicationDto.getPledgeValue();
@@ -55,10 +54,11 @@ public class CreditService {
             CreditProducedInFactory creditProducedInFactory = CreditFactory.getCredit(creditScore,creditResultEnum,customer,pledgeValue);
             Credit credit = CreditMapper.INSTANCE.convertCreditProducedFactoryToCredit(creditProducedInFactory);
             creditDao.save(credit);
+
             CreditApplicationResultDto creditApplicationResultDto = CreditMapper.INSTANCE.convertCreditToCreditApplicationResultDto(credit);
-            //TODO: send sms here, try and catche almalı mıyız?
             String message = "TEST MESSAGE.\n"+"CREDIT "+credit.getCreditResultEnum()+".\nCredit Limit is "+ credit.getCreditLimit()+" TL.";
-            smsService.sendSms(message,customer.getPhoneNumber().substring(1));
+            // TODO: sms'i aktive et
+            //smsService.sendSms(message,customer.getPhoneNumber().substring(1));
             return ResponseEntity.ok(creditApplicationResultDto);
 
         }else{

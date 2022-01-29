@@ -2,6 +2,7 @@ package com.example.n11talenthubbootcampgraduationprojectrsmciftci.service;
 
 
 
+import com.example.n11talenthubbootcampgraduationprojectrsmciftci.converter.CustomerMapper;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dao.CustomerDao;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerDto;
 import com.example.n11talenthubbootcampgraduationprojectrsmciftci.dto.CustomerSavingDto;
@@ -34,11 +35,10 @@ class CustomerServiceTest {
 
     @Test
     void shouldSave(){
-
-        Customer customerSaved = CustomerDataProvider.getCustomer();
-        when(customerDao.save(ArgumentMatchers.any(Customer.class))).thenReturn(customerSaved);
-
         CustomerSavingDto customerSavingDto = CustomerDataProvider.getCustomerSavingDto();
+        Customer customerSaved = CustomerMapper.INSTANCE.convertCustomerSavingDtoToCustomer(customerSavingDto);
+        customerSaved.setId(1L);
+        when(customerDao.save(ArgumentMatchers.any(Customer.class))).thenReturn(customerSaved);
         Customer result = customerService.save(customerSavingDto);
 
         assertEquals(customerSaved,result);
