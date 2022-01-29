@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 
 @PropertySource("classpath:credit.properties")
 @Configuration
-@Component("factoryDataSource")
 public class CreditFactoryConfig {
 
     CreditFactoryDataSource factoryDataSource(

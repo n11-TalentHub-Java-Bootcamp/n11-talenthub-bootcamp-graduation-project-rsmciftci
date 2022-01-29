@@ -21,6 +21,7 @@ import java.time.LocalDate;
 @RequestMapping("/api/credit-application/")
 @AllArgsConstructor
 @Validated
+@CrossOrigin
 public class CustomerCreditApplicationController {
 
     private CreditService creditService;

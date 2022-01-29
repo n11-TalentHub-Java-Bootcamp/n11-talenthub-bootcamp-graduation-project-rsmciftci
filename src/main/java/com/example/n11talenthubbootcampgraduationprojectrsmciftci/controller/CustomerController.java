@@ -28,6 +28,7 @@ import java.time.LocalDate;
 @RequestMapping("/api/customers/")
 @AllArgsConstructor
 @Validated
+@CrossOrigin
 public class CustomerController {
 
     private CustomerService customerService;
