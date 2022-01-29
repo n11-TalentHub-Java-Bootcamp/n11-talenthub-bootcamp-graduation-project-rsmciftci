@@ -35,6 +35,9 @@ public class CustomerCreditApplicationController {
             ),
             @ApiResponse(
                     responseCode = "404",description = "When no-customer match with the Turkish identity number.", content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "400",description = "When the dto is cannot be validated.", content = @Content
             )
     })
     @PostMapping("")
@@ -50,7 +53,7 @@ public class CustomerCreditApplicationController {
             @ApiResponse(responseCode = "200", description = "When credit application has found.", content = {@Content(mediaType = "application/json")}
             ),
             @ApiResponse(
-                    responseCode = "500",description = "When dateOfBirth is not in the correct form. It should be YYYY-MMM-DD.", content = @Content
+                    responseCode = "500",description = "When dateOfBirth is not in the correct form. It should be YYYY-MM-DD.", content = @Content
             ),
             @ApiResponse(
                     responseCode = "500",description = "When Turkish identity number doesn't obey its algorithm.", content = @Content
