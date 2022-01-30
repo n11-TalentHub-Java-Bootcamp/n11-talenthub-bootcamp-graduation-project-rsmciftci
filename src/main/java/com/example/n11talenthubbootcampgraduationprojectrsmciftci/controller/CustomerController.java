@@ -106,10 +106,4 @@ public class CustomerController {
         return creditScoreService.getCreditScoreEnum(turkishIdentityNumber).toString();
     }
 
-
-
-
-
-
-
 }
